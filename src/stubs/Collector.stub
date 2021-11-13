@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Collectors;
+
+use Denysovvl\EasyCollector\BaseCollector;
+
+class DummyCollector extends BaseCollector
+{
+    /**
+     * @param $element
+     * @return array
+     */
+    public function collect($element)
+    {
+        return [
+            //TODO: define your data here
+        ];
+    }
+}

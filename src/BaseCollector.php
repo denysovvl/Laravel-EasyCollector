@@ -5,11 +5,9 @@ namespace Denysovvl\EasyCollector;
 use Exception;
 use Illuminate\Support\Collection;
 
-abstract class EasyCollector implements Collectable
+abstract class BaseCollector implements Collectable
 {
     protected $elements;
-
-    protected $collected;
 
     /**
      * @throws Exception
