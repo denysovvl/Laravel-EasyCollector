@@ -55,7 +55,7 @@ class CreateCollectorCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return  base_path('vendor/denysovvl/easy-collector/src/stubs/Collector.stub');
+        return  __DIR__. '/../stubs/Collector.stub';
     }
     /**
      * Get the default namespace for the class.
