@@ -13,7 +13,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Denysovvl\\EasyCollector\\CollectorProvider"
+                "Denysovvl\\EasyCollector\\Providers\\CollectorProvider"
             ]
         }
     }
