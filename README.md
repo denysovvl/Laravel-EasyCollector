@@ -114,7 +114,7 @@ In **$collector** you will see something like this:
 
 ```
 
-Or you can use you arrays as paramater:
+Or you can use your arrays as parameters:
 
 ```php
 
@@ -138,7 +138,7 @@ Or you can use you arrays as paramater:
     }
 
 ```
-EasyCollector is convenient to mass insert to model 
+EasyCollector is a convenient way to mass insert to model 
 
 ```php
 
