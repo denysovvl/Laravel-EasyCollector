@@ -144,11 +144,9 @@ EasyCollector is a convenient way to mass insert to model
 
     public function myFunction()
     {
-        $users = ...
-
-        $collector = MyAwesomeCollector::toArray($users);
-        
-        AnotherModel::insert($collector);
+        $users = User::all();
+       
+        AnotherModel::insert(MyAwesomeCollector::toArray($users));
     }
 
 ```
