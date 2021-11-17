@@ -4,5 +4,5 @@ namespace Denysovvl\EasyCollector;
 
 interface Collectable
 {
-    public function collect($element);
+    public function collect($element, $args);
 }
