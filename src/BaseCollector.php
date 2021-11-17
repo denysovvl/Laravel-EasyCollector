@@ -9,13 +9,15 @@ abstract class BaseCollector implements Collectable
 {
     protected $elements;
 
+    protected $collector;
+
     /**
      * @throws Exception
      */
-    public function __construct($elements)
+    public function __construct($elements, $args)
     {
         if (!is_iterable($elements)) {
-            throw new Exception(self::class . ': Given element must be iterable, [' . gettype($elements) . '] given.');
+            throw new Exception(static::class . ': Given element must be iterable, [' . gettype($elements) . '] given.');
         }
 
         if (is_array($elements)) {
@@ -23,6 +25,26 @@ abstract class BaseCollector implements Collectable
         }
 
         $this->elements = $elements;
+
+        $this->collector = new ArgsCollector($this->defaultArgsValue());
+
+        $this->setArgs($args);
+    }
+
+    /**
+     * Sets additional args to ArgsCollector
+     *
+     * @param $args
+     */
+    private function setArgs($args)
+    {
+        if (!$args) {
+            return ;
+        }
+
+        foreach ($args as $key => $value) {
+            $this->collector->{$key} = $value;
+        }
     }
 
     /**
@@ -35,7 +57,7 @@ abstract class BaseCollector implements Collectable
         $array = [];
 
         foreach ($this->elements as $element) {
-            $array[] = $this->collect($element);
+            $array[] = $this->collect($element, $this->collector);
         }
 
         return $array;
@@ -62,15 +84,25 @@ abstract class BaseCollector implements Collectable
     }
 
     /**
+     * Sets default value for ArgsCollector if needed key is not present
+     *
+     * @return null
+     */
+    public function defaultArgsValue()
+    {
+        return null;
+    }
+
+    /**
      * Creates instance of child class and returns array representation of collector.
      *
      * @param mixed $elements
      * @return array
      * @throws Exception
      */
-    public static function toArray($elements): array
+    public static function toArray($elements, $args = null): array
     {
-        return (new static($elements))->getArray();
+        return (new static($elements, $args))->getArray();
 
     }
 
@@ -81,9 +113,9 @@ abstract class BaseCollector implements Collectable
      * @return Collection
      * @throws Exception
      */
-    public static function toCollection($elements): Collection
+    public static function toCollection($elements, $args = null): Collection
     {
-        return (new static($elements))->getCollection();
+        return (new static($elements, $args))->getCollection();
     }
 
     /**
@@ -93,9 +125,9 @@ abstract class BaseCollector implements Collectable
      * @return array
      * @throws Exception
      */
-    public static function toObject($elements): array
+    public static function toObject($elements, $args = null): array
     {
-        return (new static($elements))->getObject();
+        return (new static($elements, $args))->getObject();
     }
 
 }

@@ -42,9 +42,7 @@ class CreateCollectorCommand extends GeneratorCommand
             throw new InvalidArgumentException("Missing required argument model name");
         }
 
-        $stub = parent::replaceClass($stub, $name);
-
-        return str_replace('DummyCollector', $this->argument('name'), $stub);
+        return parent::replaceClass($stub,  class_basename($name));
     }
 
     /**
